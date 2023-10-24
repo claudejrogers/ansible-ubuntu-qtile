@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Install zsh
+sudo apt install -y zsh
+
 # Clean up
 log "Cleaning up" "info"
 sudo apt autoremove -y

@@ -25,6 +25,12 @@
     - core
     - qtile
 
+- name: Ensure qtile config directory exists
+  ansible.builtin.file:
+    path: "{{ home }}/.config/qtile"
+    state: directory
+    mode: '0755'
+
 - name: Transfer qtile config
   get_url:
     url: https://raw.githubusercontent.com/claudejrogers/ubuntu-qtile-config/main/qtile/config.py
@@ -52,10 +58,16 @@
     - core
     - qtile
 
+- name: Ensure rofi config directory exists
+  ansible.builtin.file:
+    path: "{{ home }}/.config/rofi"
+    state: directory
+    mode: '0755'
+
 - name: Configure rofi
   get_url:
     url: https://raw.githubusercontent.com/claudejrogers/ubuntu-qtile-config/main/rofi/config.rasi
-    dest: "{{ home }}/.config/rofi/config.resi"
+    dest: "{{ home }}/.config/rofi/config.rasi"
   tags:
     - install
     - core
@@ -64,11 +76,17 @@
 - name: Theme rofi
   get_url:
     url: https://raw.githubusercontent.com/claudejrogers/ubuntu-qtile-config/main/rofi/doom-one.rasi
-    dest: "{{ home }}/.config/rofi/doom-one.resi"
+    dest: "{{ home }}/.config/rofi/doom-one.rasi"
   tags:
     - install
     - core
     - qtile
+
+- name: Ensure ~/.local/scripts
+  ansible.builtin.file:
+    path: "{{ home }}/.local/scripts"
+    state: directory
+    mode: '0755'
 
 - name: Download powermenu script
   get_url:

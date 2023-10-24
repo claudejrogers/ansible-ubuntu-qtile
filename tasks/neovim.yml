@@ -19,6 +19,7 @@
     - core
 
 - name: Set neovim as editor
+  become: true
   community.general.alternatives:
     name: editor
     link: /usr/bin/editor
