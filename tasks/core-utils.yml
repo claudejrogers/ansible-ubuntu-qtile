@@ -1,0 +1,23 @@
+- name: Install build essential, cmake, etc
+  become: true
+  apt:
+    name: ["build-essential", "cmake", "pkg-config", "software-properties-common"]
+  tags:
+    - install
+    - core
+
+- name: Install dependencies/libraries
+  become: true
+  apt:
+    name: ["libfreetype6-dev", "libfontconfig1-dev", "libxcb-xfixes0-dev", "libxkbcommon-dev", "libpthread-stubs0-dev"]
+  tags:
+    - install
+    - core
+
+- name: Install key tools
+  become: true
+  apt:
+    name: ["curl", "wget", "tmux", "ripgrep", "fzf", "vim", "htop", "moreutils", "fuse"]
+  tags:
+    - install
+    - core

@@ -1,0 +1,29 @@
+- name: Add allacritty ppa (ppa:aslatter/ppa)
+  become: true
+  apt_repository:
+    repo: ppa:aslatter/ppa
+    state: present
+    update_cache: true
+  tags:
+    - install
+    - core
+    - terminal
+
+- name: Install the Alacritty terminal
+  become: true
+  apt:
+    name: alacritty
+  tags:
+    - install
+    - core
+    - terminal
+
+- name: Download alacritty.yml
+  get_url:
+    url: https://raw.githubusercontent.com/claudejrogers/ubuntu-qtile-config/main/alacritty/alacritty.yml
+    dest: "{{ home }}/.config/alacritty/alacritty.yml"
+  tags:
+    - install
+    - core
+    - terminal
+

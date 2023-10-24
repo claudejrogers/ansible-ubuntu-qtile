@@ -1,0 +1,22 @@
+- name: Download neovim kickstart
+  ansible.builtin.git:
+    repo: "https://github.com/nvim-lua/kickstart.nvim.git"
+    dest: "{{ home }}/.config/nvim"
+  tags:
+    - install
+    - tools
+
+- name: Initialize neovim environment
+  shell: "nvim --headless '+Lazy! sync' +qa"
+  tags:
+    - install
+    - tools
+
+- name: Download tmux.conf
+  get_url:
+    url: "https://raw.githubusercontent.com/claudejrogers/ubuntu-qtile-config/main/home/tmux.conf"
+    dest: "{{ home }}/.tmux.conf"
+  tags:
+    - install
+    - tools
+

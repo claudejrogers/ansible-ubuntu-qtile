@@ -1,0 +1,14 @@
+- name: Install Meslo Nerd Fornt
+  ansible.builtin.unarchive:
+    src: "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Meslo.zip"
+    dest: "{{ home }}/.local/share/fonts"
+    remote_src: true
+  tags:
+    - install
+    - fonts
+
+- name: Update font cache
+  shell: "fc-cache -fv"
+  tags:
+    - install
+    - fonts

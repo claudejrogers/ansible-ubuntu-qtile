@@ -1,0 +1,80 @@
+- name: Install packages for qtile
+  become: true
+  apt:
+    name: ["rofi", "aptitude", "picom"]
+  tags:
+    - install
+    - core
+    - qtile
+
+- name: Install Qtile python packages
+  pip:
+    name: ["xcffib", "qtile", "psutil", "dbus-next"] 
+  tags:
+    - install
+    - core
+    - qtile
+
+- name: Add desktop entry for Qtile
+  become: true
+  ansible.builtin.template:
+    src: templates/qtile.desktop.j2
+    dest: /usr/share/xsessions/qtile.desktop
+  tags:
+    - install
+    - core
+    - qtile
+
+- name: Transfer qtile config
+  get_url:
+    url: https://raw.githubusercontent.com/claudejrogers/ubuntu-qtile-config/main/qtile/config.py
+    dest: "{{ home }}/.config/qtile/config.py"
+  tags:
+    - install
+    - core
+    - qtile
+
+- name: Configure GTK3 theme
+  ansible.builtin.copy:
+    src: files/gtk-3.0.settings.ini
+    dest: "{{ home }}/.config/gtk-3.0/settings.ini"
+  tags:
+    - install
+    - core
+    - qtile
+
+- name: Configure GTK2 theme
+  ansible.builtin.copy:
+    src: files/gtkrc-2.0
+    dest: "{{ home }}/.gtkrc-2.0"
+  tags:
+    - install
+    - core
+    - qtile
+
+- name: Configure rofi
+  get_url:
+    url: https://raw.githubusercontent.com/claudejrogers/ubuntu-qtile-config/main/rofi/config.rasi
+    dest: "{{ home }}/.config/rofi/config.resi"
+  tags:
+    - install
+    - core
+    - qtile
+
+- name: Theme rofi
+  get_url:
+    url: https://raw.githubusercontent.com/claudejrogers/ubuntu-qtile-config/main/rofi/doom-one.rasi
+    dest: "{{ home }}/.config/rofi/doom-one.resi"
+  tags:
+    - install
+    - core
+    - qtile
+
+- name: Download powermenu script
+  get_url:
+    url: https://raw.githubusercontent.com/claudejrogers/ubuntu-qtile-config/main/scripts/powermenu.sh
+    dest: "{{ home }}/.local/scripts/powermenu.sh"
+  tags:
+    - install
+    - core
+    - qtile

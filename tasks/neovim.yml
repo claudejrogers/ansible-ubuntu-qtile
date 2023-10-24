@@ -1,0 +1,26 @@
+- name: Add neovim ppa (ppa:neovim-ppa/unstable)
+  become: true
+  apt_repository:
+    repo: ppa:neovim-ppa/unstable
+    state: present
+    update_cache: true
+  tags:
+    - install
+    - editor
+    - core
+
+- name: Install neovim
+  become: true
+  apt:
+    name: ["neovim"]
+  tags:
+    - install
+    - editor
+    - core
+
+- name: Set neovim as editor
+  community.general.alternatives:
+    name: editor
+    link: /usr/bin/editor
+    path: /usr/bin/nvim
+    priority: 60
