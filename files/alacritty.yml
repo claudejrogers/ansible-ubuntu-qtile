@@ -1,0 +1,32 @@
+env:
+  TERM: xterm-256color
+window:
+  padding:
+    x: 5
+    y: 5
+font:
+  normal:
+    family: "MesloLGM Nerd Font Mono"
+  size: 6.0
+colors:
+  primary:
+    background: '0x282c34'
+    foreground: '0xbbc2cf'
+  normal:
+    black: '0x282c34'
+    red: '0xff6c6b'
+    green: '0x98be65'
+    yellow: '0xecbe7b'
+    blue: '0x51afef'
+    magenta: '0xc678dd'
+    cyan: '0x46d9ff'
+    white: '0xbbc2cf'
+  bright:
+    black: '0x21242b'
+    red: '0xda8548'
+    green: '0x4db5bd'
+    yellow: '0xd19a66'
+    blue: '0x2257a0'
+    magenta: '0xa9a1e1'
+    cyan: '0x5699af'
+    white: '0x5b6268'
