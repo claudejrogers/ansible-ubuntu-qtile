@@ -12,11 +12,23 @@
     - install
     - tools
 
-- name: Download tmux.conf
-  get_url:
-    url: "https://raw.githubusercontent.com/claudejrogers/ubuntu-qtile-config/main/home/tmux.conf"
+- name: Copy tmux.conf
+  ansible.builtin.copy:
+    src: "files/tmux.conf"
     dest: "{{ home }}/.tmux.conf"
   tags:
     - install
     - tools
+
+- name: Ensure ~/.local/bin exists
+  ansible.builtin.file:
+    path: "{{ home }}/.local/bin"
+    state: directory
+    mode: '0775'
+
+- name: Copy project-session script
+  ansible.builtin.copy:
+    src: files/scripts/project-session
+    dest: "{{ home }}/.local/bin/project-session"
+    mode: '0755'
 

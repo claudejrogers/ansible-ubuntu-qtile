@@ -32,8 +32,8 @@
     mode: '0755'
 
 - name: Transfer qtile config
-  get_url:
-    url: https://raw.githubusercontent.com/claudejrogers/ubuntu-qtile-config/main/qtile/config.py
+  ansible.builtin.copy:
+    src: files/qtile-config.py
     dest: "{{ home }}/.config/qtile/config.py"
   tags:
     - install
@@ -89,10 +89,18 @@
     mode: '0755'
 
 - name: Download powermenu script
-  get_url:
-    url: https://raw.githubusercontent.com/claudejrogers/ubuntu-qtile-config/main/scripts/powermenu.sh
+  ansible.builtin.copy:
+    src: files/scripts/powermenu.sh
     dest: "{{ home }}/.local/scripts/powermenu.sh"
   tags:
     - install
     - core
-    - qtile
+ 
+- name: Download wifi script
+  ansible.builtin.copy:
+    src: files/scripts/wifi.sh
+    dest: "{{ home }}/.local/scripts/wifi.sh"
+  tags:
+    - install
+    - core
+    - qtile   - qtile

@@ -17,7 +17,16 @@
 - name: Install key tools
   become: true
   apt:
-    name: ["curl", "wget", "tmux", "ripgrep", "fzf", "vim", "htop", "moreutils", "fuse"]
+    name: ["curl", "wget", "tmux", "ripgrep", "fzf", "vim", "htop", "moreutils", "fuse", "i3", "texlive-full"]
   tags:
     - install
     - core
+
+- name: Install network tools
+  become: true
+  apt:
+    name: ["network-manager-gnome", "nmap", "cifs-util", "smbclient", "openvpn-systemd-resolved"]
+  tags:
+    - install
+    - core
+
