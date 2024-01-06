@@ -24,10 +24,10 @@
     state: directory
     mode: '0755'
 
-- name: Download alacritty.yml
+- name: transfer alacritty.toml
   ansible.builtin.copy:
-    src: files/alacritty.yml
-    dest: "{{ home }}/.config/alacritty/alacritty.yml"
+    src: files/alacritty.toml
+    dest: "{{ home }}/.config/alacritty/alacritty.toml"
   tags:
     - install
     - core
